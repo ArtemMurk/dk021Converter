@@ -22,6 +22,7 @@ public class ClassificatorDao {
 
     public void save(Set<Classificator> classificators)
     {
+        System.out.println("Start save classificators in dao");
         try(Connection connection = DriverManager.getConnection(url,props))
         {
             connection.setAutoCommit(false);

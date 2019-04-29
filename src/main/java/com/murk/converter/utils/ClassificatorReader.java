@@ -28,10 +28,16 @@ public class ClassificatorReader {
         try {
             URL  jsonUrl = new URL(path);
             classificators = (Set<Classificator>)  mapper.readValue(jsonUrl,Set.class);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
+        if (classificators != null)
+        {
+            System.out.println("END read classifictors from path = " + path+", classificators length = "+ classificators.size());
+        } else
+            {
+                System.err.println("Fail get data from path = " + path);
+            }
 
         return classificators;
     }

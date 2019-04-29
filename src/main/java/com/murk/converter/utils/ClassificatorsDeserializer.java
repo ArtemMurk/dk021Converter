@@ -42,7 +42,7 @@ public class ClassificatorsDeserializer extends StdDeserializer<Set> {
             Integer parentId= getParentId(codeSplit[0]);
 
             Classificator classificator = new Classificator(id,num,parentId,name);
-            System.out.println(classificator);
+            classificators.add(classificator);
         }
             return classificators;
     }
