@@ -1,22 +1,38 @@
 package com.murk.converter.utils;
 
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.murk.converter.model.Classificator;
 
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.io.IOException;
+
+import java.net.URL;
 import java.util.Set;
 
 public class ClassificatorReader {
+
+    private static ObjectMapper mapper;
+
+    static {
+        mapper = new ObjectMapper();
+        SimpleModule module = new SimpleModule("classificatorDeser", Version.unknownVersion());
+        module.addDeserializer(Set.class, new ClassificatorsDeserializer(null));
+        mapper.registerModule(module);
+
+    }
+
     public static Set<Classificator> read(String path)
     {
+        Set<Classificator> classificators = null;
         try {
-        URI jsonUrl = new URI("https://gist.githubusercontent.com/anonymous/4b32c7ef1ceb5dd48bf5/raw/ef1987551faa3fb61473bb0e7aad70a228dc36d6/gistfile1.txt");
+            URL  jsonUrl = new URL(path);
+            classificators = (Set<Classificator>)  mapper.readValue(jsonUrl,Set.class);
 
-
-        } catch (URISyntaxException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return null;
+        return classificators;
     }
 }
