@@ -1,13 +1,11 @@
 package com.murk.converter;
 
-import com.murk.converter.dao.ClassificatorDao;
-import com.murk.converter.model.Classificator;
+
 import com.murk.converter.service.ClassificatorService;
 import com.murk.converter.utils.ClassificatorReader;
 import com.murk.converter.utils.PropertiesReader;
 
 import java.util.Map;
-import java.util.Set;
 
 public class Main {
     private static ClassificatorService service = new ClassificatorService();

@@ -3,13 +3,11 @@ package com.murk.converter.utils;
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.murk.converter.model.Classificator;
 
 import java.io.IOException;
 
 import java.net.URL;
 import java.util.Map;
-import java.util.Set;
 
 public class ClassificatorReader {
 

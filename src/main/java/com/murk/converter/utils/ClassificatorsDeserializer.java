@@ -5,12 +5,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
-import com.murk.converter.model.Classificator;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class ClassificatorsDeserializer extends StdDeserializer<Map> {
 
@@ -19,7 +17,7 @@ public class ClassificatorsDeserializer extends StdDeserializer<Map> {
     }
 
     @Override
-    public Map deserialize(JsonParser jsonParser, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+    public Map deserialize(JsonParser jsonParser, DeserializationContext ctxt) throws IOException {
         Map<String,String> classificators = new HashMap<>();
 
         JsonNode node = jsonParser.getCodec().readTree(jsonParser);

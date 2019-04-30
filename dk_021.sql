@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS DK_021
 (
 	id INTEGER NOT NULL,
 	num SMALLINT NOT NULL,
-	parentId INTEGER  ,
+	parentId INTEGER  REFERENCES DK_021(id) ON DELETE CASCADE,
 	name VARCHAR(300) NOT NULL,
 	constraint code PRIMARY KEY(id,num),
 	constraint uniqueId UNIQUE(id)
