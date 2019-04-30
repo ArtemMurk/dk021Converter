@@ -4,6 +4,7 @@ import com.murk.converter.model.Classificator;
 import com.murk.converter.utils.PropertiesReader;
 
 import java.sql.*;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
@@ -20,21 +21,21 @@ public class ClassificatorDao {
 
     }
 
-    public void save(Set<Classificator> classificators)
+    public void save(Map<Integer,Classificator> classificators)
     {
         System.out.println("Start save classificators in dao");
         try(Connection connection = DriverManager.getConnection(url,props))
         {
             connection.setAutoCommit(false);
-            classificators.forEach(classificator ->
-            {
-                save(classificator,connection);
-                try {
-                    connection.commit();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            });
+
+            for (Map.Entry<Integer, Classificator> entry : classificators.entrySet()) {
+                Integer id = entry.getKey();
+                Classificator classificator = entry.getValue();
+
+                save(classificator, connection);
+                connection.commit();
+            }
+
             connection.setAutoCommit(true);
         } catch (SQLException e) {
             e.printStackTrace();
